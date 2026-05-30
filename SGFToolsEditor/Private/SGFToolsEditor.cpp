@@ -7,6 +7,7 @@
 #include "IAssetTools.h"
 #include "Material/SGFToolsMaterialInstance.h"
 #include "Material/SGFToolsMaterialInstanceAssetTypeActions.h"
+#include "Material/SGFToolsMaterialInstanceConversion.h"
 #include "Material/SGFToolsMaterialInstanceFactory.h"
 #include "Materials/MaterialInterface.h"
 #include "Misc/PackageName.h"
@@ -73,6 +74,17 @@ namespace
 			AssetTools.SyncBrowserToAssets(CreatedAssets);
 		}
 	}
+
+	void ExecuteConvertSGFToolsMaterialInstanceToNative(const FToolMenuContext& MenuContext)
+	{
+		const UContentBrowserAssetContextMenuContext* ContentBrowserContext = UContentBrowserAssetContextMenuContext::FindContextWithAssets(MenuContext);
+		if (!ContentBrowserContext)
+		{
+			return;
+		}
+
+		FSGFToolsMaterialInstanceConversion::ConvertSelectionToNativeMaterialInstance(*ContentBrowserContext);
+	}
 }
 
 void FSGFToolsEditorModule::StartupModule()
@@ -128,6 +140,25 @@ void FSGFToolsEditorModule::RegisterMenus()
 		const FToolMenuExecuteAction UIAction = FToolMenuExecuteAction::CreateStatic(&ExecuteCreateSGFToolsMaterialInstance);
 
 		InSection.AddMenuEntry("SGFTools_CreateMaterialInstance", Label, ToolTip, Icon, UIAction);
+	}));
+
+	UToolMenu* SGFToolsMaterialInstanceMenu = UE::ContentBrowser::ExtendToolMenu_AssetContextMenu(USGFToolsMaterialInstance::StaticClass());
+	FToolMenuSection& SGFToolsMaterialInstanceSection = SGFToolsMaterialInstanceMenu->FindOrAddSection("GetAssetActions");
+
+	SGFToolsMaterialInstanceSection.AddDynamicEntry("SGFTools_ConvertMaterialInstance_Dynamic", FNewToolMenuSectionDelegate::CreateLambda([](FToolMenuSection& InSection)
+	{
+		const UContentBrowserAssetContextMenuContext* ContentBrowserContext = UContentBrowserAssetContextMenuContext::FindContextWithAssets(InSection);
+		if (!ContentBrowserContext || !FSGFToolsMaterialInstanceConversion::CanConvertSelection(*ContentBrowserContext))
+		{
+			return;
+		}
+
+		const TAttribute<FText> Label = LOCTEXT("ConvertSGFToolsMaterialInstanceToNative", "转换为原生 Material Instance");
+		const TAttribute<FText> ToolTip = LOCTEXT("ConvertSGFToolsMaterialInstanceToNativeTooltip", "创建一个普通原生 Material Instance 副本，并复制当前 SGF Material Instance 的 Parent 和参数覆盖。");
+		const FSlateIcon Icon = FSlateIcon(FAppStyle::GetAppStyleSetName(), "ClassIcon.MaterialInstanceActor");
+		const FToolMenuExecuteAction UIAction = FToolMenuExecuteAction::CreateStatic(&ExecuteConvertSGFToolsMaterialInstanceToNative);
+
+		InSection.AddMenuEntry("SGFTools_ConvertMaterialInstanceToNative", Label, ToolTip, Icon, UIAction);
 	}));
 }
 

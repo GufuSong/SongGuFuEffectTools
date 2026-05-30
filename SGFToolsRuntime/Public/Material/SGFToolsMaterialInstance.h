@@ -7,13 +7,14 @@
 #include "SGFToolsMaterialInstance.generated.h"
 
 /**
- * SGFTools 自定义材质实例资产。
+ * 松谷福特效通 参数管理功能,具备更高级的参数UI界面。
  *
- * 这个类放在 Runtime 模块，是因为资产本身需要被编辑器和运行时共同识别。
- * 当前阶段只继承 UMaterialInstanceConstant，不添加任何新属性或新功能。
+ * 
+ * 继承自 UMaterialInstanceConstant。
  */
-UCLASS(BlueprintType)
+UCLASS(BlueprintType) //资产本体
 class SGFTOOLSRUNTIME_API USGFToolsMaterialInstance : public UMaterialInstanceConstant
 {
 	GENERATED_BODY()
 };
+
