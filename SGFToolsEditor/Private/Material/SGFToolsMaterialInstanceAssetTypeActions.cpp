@@ -3,7 +3,9 @@
 #include "Material/SGFToolsMaterialInstanceAssetTypeActions.h"
 
 #include "AssetTypeCategories.h"
+#include "IMaterialEditor.h"
 #include "Material/SGFToolsMaterialInstance.h"
+#include "Material/SGFToolsMaterialInstanceHierarchyDetails.h"
 #include "MaterialEditorModule.h"
 
 #define LOCTEXT_NAMESPACE "SGFToolsMaterialInstanceAssetTypeActions"
@@ -37,7 +39,9 @@ void FSGFToolsMaterialInstanceAssetTypeActions::OpenAssetEditor(const TArray<UOb
 	{
 		if (USGFToolsMaterialInstance* MaterialInstance = Cast<USGFToolsMaterialInstance>(Object))
 		{
-			MaterialEditorModule.CreateMaterialInstanceEditor(ToolkitMode, EditWithinLevelEditor, MaterialInstance);
+			SGFTools::MaterialInstanceHierarchyDetails::QueueEditorForMaterialInstance(MaterialInstance);
+			TSharedRef<IMaterialEditor> MaterialEditor = MaterialEditorModule.CreateMaterialInstanceEditor(ToolkitMode, EditWithinLevelEditor, MaterialInstance);
+			SGFTools::MaterialInstanceHierarchyDetails::OpenForMaterialEditor(MaterialEditor);
 		}
 	}
 }

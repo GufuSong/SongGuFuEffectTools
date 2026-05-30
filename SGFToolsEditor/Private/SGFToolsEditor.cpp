@@ -9,6 +9,7 @@
 #include "Material/SGFToolsMaterialInstanceAssetTypeActions.h"
 #include "Material/SGFToolsMaterialInstanceConversion.h"
 #include "Material/SGFToolsMaterialInstanceFactory.h"
+#include "Material/SGFToolsMaterialInstanceHierarchyDetails.h"
 #include "Materials/MaterialInterface.h"
 #include "Misc/PackageName.h"
 #include "Styling/AppStyle.h"
@@ -91,6 +92,8 @@ void FSGFToolsEditorModule::StartupModule()
 {
 	// Editor 模块启动时注册资产显示/打开逻辑，以及 Content Browser 右键菜单扩展。
 	RegisterAssetTypeActions();
+	RegisterAssetTypeActions();
+	SGFTools::MaterialInstanceHierarchyDetails::Startup();
 	UToolMenus::RegisterStartupCallback(FSimpleMulticastDelegate::FDelegate::CreateRaw(this, &FSGFToolsEditorModule::RegisterMenus));
 }
 
@@ -98,7 +101,9 @@ void FSGFToolsEditorModule::ShutdownModule()
 {
 	// 关闭或热重载时清理注册项，避免菜单和 AssetTypeActions 留下失效指针。
 	UToolMenus::UnRegisterStartupCallback(this);
+	UToolMenus::UnRegisterStartupCallback(this);
 	UToolMenus::UnregisterOwner(this);
+	SGFTools::MaterialInstanceHierarchyDetails::Shutdown();
 
 	if (FAssetToolsModule::IsModuleLoaded())
 	{

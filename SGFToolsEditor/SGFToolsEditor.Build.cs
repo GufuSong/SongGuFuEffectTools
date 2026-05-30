@@ -20,6 +20,7 @@ public class SGFToolsEditor : ModuleRules
 			{
 				"CoreUObject",
 				"Engine",
+				"ApplicationCore",
 				"Slate",
 				"SlateCore",
 				"UnrealEd",
@@ -28,6 +29,7 @@ public class SGFToolsEditor : ModuleRules
 				"AssetRegistry",
 				"ContentBrowser",
 				"MaterialEditor",
+				"PropertyEditor",
 				"SGFToolsRuntime"
 			}
 		);
