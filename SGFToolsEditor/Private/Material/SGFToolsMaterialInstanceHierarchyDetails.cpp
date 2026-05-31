@@ -686,6 +686,8 @@ namespace
 		// 行为：关闭扩展对象；作用：移除编辑器事件绑定并注销层级详情页签；输出：无返回值。
 		void Shutdown()
 		{
+			RestoreMaterialEditorDetailsView();
+
 			if (TSharedPtr<IMaterialEditor> Editor = MaterialEditor.Pin())
 			{
 				Editor->OnRegisterTabSpawners().Remove(RegisterTabSpawnersHandle);
@@ -748,13 +750,57 @@ namespace
 		// 行为：处理编辑器关闭事件；作用：标记扩展已关闭以便后续清理；输出：无返回值。
 		void HandleEditorClosed()
 		{
+			RestoreMaterialEditorDetailsView();
 			bClosed = true;
+		}
+
+		// 行为：绑定层级详情刷新视图；作用：复用 UMaterialEditorInstanceConstant::RegenerateArrays 的原生 DetailsView 刷新入口，避免参数数组重建后保留旧参数控件；输出：无返回值。
+		void BindHierarchyDetailsView(UMaterialEditorInstanceConstant* MaterialEditorInstance, const TSharedRef<IDetailsView>& DetailsView)
+		{
+			if (!MaterialEditorInstance)
+			{
+				return;
+			}
+
+			RestoreMaterialEditorDetailsView();
+
+			PreviousMaterialEditorDetailsView = MaterialEditorInstance->DetailsView;
+			MaterialEditorInstance->DetailsView = DetailsView;
+			HierarchyDetailsView = DetailsView;
+		}
+
+		// 行为：还原材质实例详情刷新视图；作用：在层级详情页签关闭或扩展关闭时把原生 DetailsView 刷新入口交还给材质实例编辑器；输出：无返回值。
+		void RestoreMaterialEditorDetailsView()
+		{
+			TSharedPtr<IDetailsView> PinnedHierarchyDetailsView = HierarchyDetailsView.Pin();
+			if (PinnedHierarchyDetailsView.IsValid())
+			{
+				if (TSharedPtr<IMaterialEditor> Editor = MaterialEditor.Pin())
+				{
+					if (UMaterialEditorInstanceConstant* MaterialEditorInstance = FindMaterialEditorInstance(Editor.ToSharedRef()))
+					{
+						if (MaterialEditorInstance->DetailsView.Pin() == PinnedHierarchyDetailsView)
+						{
+							MaterialEditorInstance->DetailsView = PreviousMaterialEditorDetailsView;
+						}
+					}
+				}
+			}
+
+			PreviousMaterialEditorDetailsView.Reset();
+			HierarchyDetailsView.Reset();
+		}
+
+		// 行为：处理层级详情页签关闭；作用：清理额外 DetailsView 对材质实例刷新入口的占用；输出：无返回值。
+		void HandleHierarchyTabClosed(TSharedRef<SDockTab> ClosedTab)
+		{
+			RestoreMaterialEditorDetailsView();
 		}
 
 		// 行为：生成层级详情页签；作用：创建承载层级详情控件的 SDockTab；输出：页签 Widget 引用。
 		TSharedRef<SDockTab> SpawnHierarchyDetailsTab(const FSpawnTabArgs& Args)
 		{
-			return SNew(SDockTab)
+			TSharedRef<SDockTab> Tab = SNew(SDockTab)
 				.Label(LOCTEXT("HierarchyDetailsTabLabel", "Hierarchy Details"))
 				[
 					SNew(SBorder)
@@ -763,6 +809,9 @@ namespace
 						CreateHierarchyDetailsWidget()
 					]
 				];
+
+			Tab->SetOnTabClosed(SDockTab::FOnTabClosedCallback::CreateSP(AsShared(), &FSGFToolsHierarchyDetailsExtension::HandleHierarchyTabClosed));
+			return Tab;
 		}
 
 		// 行为：创建层级详情控件；作用：生成自定义 DetailsView 并绑定过滤、刷新和详情定制逻辑；输出：详情 Widget 引用。
@@ -781,6 +830,7 @@ namespace
 				return SNew(STextBlock)
 					.Text(LOCTEXT("EditorInstanceUnavailable", "Hierarchy Details is waiting for the Material Instance Details data."));
 			}
+			TWeakObjectPtr<UMaterialEditorInstanceConstant> WeakMaterialEditorInstance = MaterialEditorInstance;
 
 			FPropertyEditorModule& PropertyEditorModule = FModuleManager::LoadModuleChecked<FPropertyEditorModule>(TEXT("PropertyEditor"));
 
@@ -791,9 +841,9 @@ namespace
 			DetailsViewArgs.bShowCustomFilterOption = true;
 
 			TSharedRef<IDetailsView> DetailsView = PropertyEditorModule.CreateDetailView(DetailsViewArgs);
-			// 行为：校验详情属性节点；作用：允许自定义 DetailsView 接受当前属性树；输出：始终为 true 的布尔值。
-			DetailsView->SetCustomValidatePropertyNodesFunction(FOnValidateDetailsViewPropertyNodes::CreateLambda(
-				[](const FRootPropertyNodeList& PropertyNodeList)
+
+			DetailsView->SetCustomValidatePropertyNodesFunction(
+				FOnValidateDetailsViewPropertyNodes::CreateLambda([](const FRootPropertyNodeList&)
 				{
 					return true;
 				}));
@@ -801,16 +851,17 @@ namespace
 			DetailsView->RegisterInstancedCustomPropertyLayout(
 				UMaterialEditorInstanceConstant::StaticClass(),
 				// 行为：创建详情定制实例；作用：为材质编辑器实例生成层级详情自定义对象；输出：详情定制共享指针。
-				FOnGetDetailCustomizationInstance::CreateLambda([MaterialEditorInstance, State = State]()
+				FOnGetDetailCustomizationInstance::CreateLambda([WeakMaterialEditorInstance, State = State]()
 				{
-					return MakeShared<FSGFToolsHierarchyMaterialInstanceDetails>(MaterialEditorInstance, State.ToSharedRef());
+					return MakeShared<FSGFToolsHierarchyMaterialInstanceDetails>(WeakMaterialEditorInstance.Get(), State.ToSharedRef());
 				}));
 
 			TWeakPtr<IDetailsView> WeakDetailsView = DetailsView;
 			DetailsView->SetCustomFilterLabel(LOCTEXT("ShowOverriddenOnly", "Show Only Overridden Parameters"));
 			// 行为：切换仅显示覆盖参数过滤；作用：反转材质编辑器实例的覆盖过滤状态并刷新详情面板；输出：无返回值。
-			DetailsView->SetCustomFilterDelegate(FSimpleDelegate::CreateLambda([MaterialEditorInstance, WeakDetailsView]()
+			DetailsView->SetCustomFilterDelegate(FSimpleDelegate::CreateLambda([WeakMaterialEditorInstance, WeakDetailsView]()
 			{
+				UMaterialEditorInstanceConstant* MaterialEditorInstance = WeakMaterialEditorInstance.Get();
 				if (!MaterialEditorInstance)
 				{
 					return;
@@ -824,6 +875,7 @@ namespace
 			}));
 
 			DetailsView->SetObject(MaterialEditorInstance, true);
+			BindHierarchyDetailsView(MaterialEditorInstance, DetailsView);
 			return DetailsView;
 		}
 
@@ -832,6 +884,8 @@ namespace
 		TWeakObjectPtr<USGFToolsMaterialInstance> MaterialInstance;
 		TSharedPtr<FSGFToolsHierarchyDetailsState> State;
 		TWeakPtr<FTabManager> RegisteredTabManager;
+		TWeakPtr<IDetailsView> PreviousMaterialEditorDetailsView;
+		TWeakPtr<IDetailsView> HierarchyDetailsView;
 		FDelegateHandle RegisterTabSpawnersHandle;
 		FDelegateHandle UnregisterTabSpawnersHandle;
 		FDelegateHandle EditorClosedHandle;
