@@ -18,7 +18,7 @@
 		{
 			"Name": "SGFToolsRuntime",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "PostConfigInit"
 		},
 		{
 			"Name": "SGFToolsEditor",

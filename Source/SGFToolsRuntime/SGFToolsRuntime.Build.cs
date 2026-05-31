@@ -21,6 +21,8 @@ public class SGFToolsRuntime : ModuleRules
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
 			{
+				"Projects",
+				"RenderCore"
 			}
 		);
 	}

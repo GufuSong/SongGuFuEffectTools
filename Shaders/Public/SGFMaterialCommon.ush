@@ -1,0 +1,9 @@
+#ifndef SGF_MATERIAL_COMMON_USH
+#define SGF_MATERIAL_COMMON_USH
+
+float SGFRemap(float Value, float InMin, float InMax, float OutMin, float OutMax)
+{
+	return OutMin + (Value - InMin) * (OutMax - OutMin) / (InMax - InMin);
+}
+
+#endif
