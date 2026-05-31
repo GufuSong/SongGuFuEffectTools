@@ -21,6 +21,7 @@
 
 namespace
 {
+	// 行为：执行创建 SGF 材质实例命令；作用：从当前选中的材质资产批量创建自定义材质实例；输出：无返回值，创建成功时同步内容浏览器选中项。
 	void ExecuteCreateSGFToolsMaterialInstance(const FToolMenuContext& MenuContext)
 	{
 		const UContentBrowserAssetContextMenuContext* ContentBrowserContext = UContentBrowserAssetContextMenuContext::FindContextWithAssets(MenuContext);
@@ -76,6 +77,7 @@ namespace
 		}
 	}
 
+	// 行为：执行转换为原生材质实例命令；作用：把当前选中的 SGF 材质实例交给转换流程处理；输出：无返回值。
 	void ExecuteConvertSGFToolsMaterialInstanceToNative(const FToolMenuContext& MenuContext)
 	{
 		const UContentBrowserAssetContextMenuContext* ContentBrowserContext = UContentBrowserAssetContextMenuContext::FindContextWithAssets(MenuContext);
@@ -88,6 +90,7 @@ namespace
 	}
 }
 
+// 行为：启动编辑器模块；作用：注册资产类型、层级详情扩展和内容浏览器菜单回调；输出：无返回值。
 void FSGFToolsEditorModule::StartupModule()
 {
 	// Editor 模块启动时注册资产显示/打开逻辑，以及 Content Browser 右键菜单扩展。
@@ -97,6 +100,7 @@ void FSGFToolsEditorModule::StartupModule()
 	UToolMenus::RegisterStartupCallback(FSimpleMulticastDelegate::FDelegate::CreateRaw(this, &FSGFToolsEditorModule::RegisterMenus));
 }
 
+// 行为：关闭编辑器模块；作用：注销菜单回调、层级详情扩展和已注册资产类型行为；输出：无返回值。
 void FSGFToolsEditorModule::ShutdownModule()
 {
 	// 关闭或热重载时清理注册项，避免菜单和 AssetTypeActions 留下失效指针。
@@ -117,18 +121,21 @@ void FSGFToolsEditorModule::ShutdownModule()
 	RegisteredAssetTypeActions.Empty();
 }
 
+// 行为：注册全部资产类型行为；作用：让 AssetTools 识别 SGF 材质实例资产；输出：无返回值。
 void FSGFToolsEditorModule::RegisterAssetTypeActions()
 {
 	IAssetTools& AssetTools = FAssetToolsModule::GetModule().Get();
 	RegisterAssetTypeAction(AssetTools, MakeShared<FSGFToolsMaterialInstanceAssetTypeActions>());
 }
 
+// 行为：注册单个资产类型行为；作用：向 AssetTools 注册行为并保存到模块生命周期列表；输出：无返回值。
 void FSGFToolsEditorModule::RegisterAssetTypeAction(IAssetTools& AssetTools, TSharedRef<IAssetTypeActions> AssetTypeAction)
 {
 	AssetTools.RegisterAssetTypeActions(AssetTypeAction);
 	RegisteredAssetTypeActions.Add(AssetTypeAction);
 }
 
+// 行为：注册内容浏览器菜单；作用：为材质和 SGF 材质实例添加创建、转换菜单入口；输出：无返回值。
 void FSGFToolsEditorModule::RegisterMenus()
 {
 	FToolMenuOwnerScoped OwnerScoped(this);
@@ -137,6 +144,7 @@ void FSGFToolsEditorModule::RegisterMenus()
 	UToolMenu* Menu = UE::ContentBrowser::ExtendToolMenu_AssetContextMenu(UMaterialInterface::StaticClass());
 	FToolMenuSection& Section = Menu->FindOrAddSection("GetAssetActions");
 
+	// 行为：构建创建菜单动态入口；作用：向材质右键菜单添加创建 SGF 材质实例命令；输出：无返回值。
 	Section.AddDynamicEntry("SGFTools_CreateMaterialInstance_Dynamic", FNewToolMenuSectionDelegate::CreateLambda([](FToolMenuSection& InSection)
 	{
 		const TAttribute<FText> Label = LOCTEXT("CreateSGFToolsMaterialInstance", "创建 SGF Material Instance");
@@ -150,6 +158,7 @@ void FSGFToolsEditorModule::RegisterMenus()
 	UToolMenu* SGFToolsMaterialInstanceMenu = UE::ContentBrowser::ExtendToolMenu_AssetContextMenu(USGFToolsMaterialInstance::StaticClass());
 	FToolMenuSection& SGFToolsMaterialInstanceSection = SGFToolsMaterialInstanceMenu->FindOrAddSection("GetAssetActions");
 
+	// 行为：构建转换菜单动态入口；作用：在可转换的 SGF 材质实例右键菜单中添加转换命令；输出：无返回值。
 	SGFToolsMaterialInstanceSection.AddDynamicEntry("SGFTools_ConvertMaterialInstance_Dynamic", FNewToolMenuSectionDelegate::CreateLambda([](FToolMenuSection& InSection)
 	{
 		const UContentBrowserAssetContextMenuContext* ContentBrowserContext = UContentBrowserAssetContextMenuContext::FindContextWithAssets(InSection);

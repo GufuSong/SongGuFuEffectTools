@@ -56,17 +56,20 @@ namespace
 	TArray<TWeakObjectPtr<USGFToolsMaterialInstance>> GPendingMaterialInstances;
 	TArray<TSharedPtr<FSGFToolsHierarchyDetailsExtension>> GActiveExtensions;
 
+	// 行为：返回隐藏参数显示状态；作用：为材质属性帮助器提供不显示隐藏参数的委托；输出：通过引用写出 false。
 	void GetShowHiddenParameters(bool& bShowHiddenParameters)
 	{
 		bShowHiddenParameters = false;
 	}
 
+	// 行为：判断是否为全局参数组；作用：过滤材质层参数组之外的全局参数组；输出：是否为可处理全局参数组的布尔值。
 	bool IsGlobalParameterGroup(const FEditorParameterGroup& ParameterGroup)
 	{
 		return ParameterGroup.GroupAssociation == EMaterialParameterAssociation::GlobalParameter
 			&& ParameterGroup.GroupName != FMaterialPropertyHelpers::LayerParamName;
 	}
 
+	// 行为：判断层级详情中参数是否可见；作用：综合参数关联类型、行创建规则和覆盖过滤状态筛选参数；输出：是否可见的布尔值。
 	bool IsParameterVisibleInHierarchy(UMaterialEditorInstanceConstant* MaterialEditorInstance, UDEditorParameterValue* Parameter, bool bRespectOverridesFilter)
 	{
 		if (!MaterialEditorInstance || !Parameter)
@@ -104,6 +107,7 @@ namespace
 		return MaterialEditorInstance->VisibleExpressions.Contains(Parameter->ParameterInfo) || bIsCooked;
 	}
 
+	// 行为：判断参数组是否存在可见参数；作用：决定层级详情是否展示指定参数组；输出：是否包含可见参数的布尔值。
 	bool HasVisibleParametersInGroup(UMaterialEditorInstanceConstant* MaterialEditorInstance, const FEditorParameterGroup& ParameterGroup, bool bRespectOverridesFilter)
 	{
 		if (!IsGlobalParameterGroup(ParameterGroup))
@@ -122,6 +126,7 @@ namespace
 		return false;
 	}
 
+	// 行为：查找材质编辑器实例数据；作用：从材质编辑器当前编辑对象中取出 UMaterialEditorInstanceConstant；输出：编辑器实例指针，失败时为空。
 	UMaterialEditorInstanceConstant* FindMaterialEditorInstance(const TSharedRef<IMaterialEditor>& MaterialEditor)
 	{
 		const TArray<UObject*>* EditingObjects = MaterialEditor->GetObjectsCurrentlyBeingEdited();
@@ -141,6 +146,7 @@ namespace
 		return nullptr;
 	}
 
+	// 行为：查找 SGF 材质实例；作用：从材质编辑器当前编辑对象中取出 USGFToolsMaterialInstance；输出：SGF 材质实例指针，失败时为空。
 	USGFToolsMaterialInstance* FindSGFToolsMaterialInstance(const TSharedRef<IMaterialEditor>& MaterialEditor)
 	{
 		const TArray<UObject*>* EditingObjects = MaterialEditor->GetObjectsCurrentlyBeingEdited();
@@ -163,12 +169,14 @@ namespace
 	class FSGFToolsHierarchyMaterialInstanceDetails : public IDetailCustomization
 	{
 	public:
+		// 行为：构造层级详情自定义对象；作用：保存材质编辑器实例和共享筛选状态；输出：无返回值，生成详情自定义对象。
 		FSGFToolsHierarchyMaterialInstanceDetails(UMaterialEditorInstanceConstant* InMaterialEditorInstance, TSharedRef<FSGFToolsHierarchyDetailsState> InState)
 			: MaterialEditorInstance(InMaterialEditorInstance)
 			, State(MoveTemp(InState))
 		{
 		}
 
+		// 行为：定制详情面板；作用：隐藏原生参数组并生成层级详情、组筛选和预览属性；输出：无返回值。
 		virtual void CustomizeDetails(IDetailLayoutBuilder& DetailLayout) override
 		{
 			PropertyUtilities = DetailLayout.GetPropertyUtilities();
@@ -204,6 +212,7 @@ namespace
 		}
 
 	private:
+		// 行为：收集可筛选参数组；作用：遍历材质参数组并记录存在可见参数的组名；输出：通过数组引用写出组名列表。
 		void CollectChipGroups(TArray<FName>& OutGroups) const
 		{
 			check(MaterialEditorInstance.IsValid());
@@ -217,11 +226,13 @@ namespace
 			}
 		}
 
+		// 行为：构建参数组筛选器；作用：创建全部/单组筛选的芯片控件；输出：筛选器 Widget 引用。
 		TSharedRef<SWidget> BuildGroupSelector(const TArray<FName>& ChipGroups)
 		{
 			TWeakPtr<IPropertyUtilities> WeakPropertyUtilities = PropertyUtilities;
 			TSharedRef<FSGFToolsHierarchyDetailsState> LocalState = State;
 
+			// 行为：创建单个筛选芯片；作用：把组名、选中状态和点击刷新逻辑封装成复选框控件；输出：芯片 Widget 引用。
 			auto MakeChip = [WeakPropertyUtilities, LocalState](const TOptional<FName> GroupName, const FText& Label)
 			{
 				return SNew(SBox)
@@ -229,6 +240,7 @@ namespace
 					[
 						SNew(SCheckBox)
 						.Style(FAppStyle::Get(), "DetailsView.SectionButton")
+						// 行为：计算筛选芯片选中状态；作用：让 UI 显示当前组选中或全部选中状态；输出：复选框状态。
 						.IsChecked_Lambda([LocalState, GroupName]()
 						{
 							if (!GroupName.IsSet())
@@ -240,6 +252,7 @@ namespace
 								? ECheckBoxState::Checked
 								: ECheckBoxState::Unchecked;
 						})
+						// 行为：响应筛选芯片切换；作用：更新选中的参数组并刷新详情面板；输出：无返回值。
 						.OnCheckStateChanged_Lambda([WeakPropertyUtilities, LocalState, GroupName](ECheckBoxState NewState)
 						{
 							if (NewState != ECheckBoxState::Checked)
@@ -288,6 +301,7 @@ namespace
 			return WrapBox;
 		}
 
+		// 行为：创建参数组详情控件；作用：按筛选条件生成每个可见参数组、复制粘贴动作和保存按钮；输出：无返回值。
 		void CreateGroupsWidget(TSharedRef<IPropertyHandle> ParameterGroupsProperty, IDetailCategoryBuilder& GroupsCategory)
 		{
 			bool bShowSaveButtons = false;
@@ -345,6 +359,7 @@ namespace
 			}
 		}
 
+		// 行为：创建单个参数组控件；作用：为组内每个可见参数生成属性行并套用材质参数显示逻辑；输出：无返回值。
 		void CreateSingleGroupWidget(FEditorParameterGroup& ParameterGroup, TSharedPtr<IPropertyHandle> ParameterGroupProperty, IDetailGroup& DetailGroup)
 		{
 			if (!ParameterGroupProperty.IsValid())
@@ -382,6 +397,7 @@ namespace
 			}
 		}
 
+		// 行为：添加保存实例行；作用：在详情面板中提供保存兄弟实例和子实例按钮；输出：无返回值。
 		void AddSaveInstanceRow(IDetailCategoryBuilder& GroupsCategory)
 		{
 			FDetailWidgetRow& SaveInstanceRow = GroupsCategory.AddCustomRow(LOCTEXT("SaveInstances", "Save Instances"));
@@ -427,6 +443,7 @@ namespace
 				];
 		}
 
+		// 行为：添加预览相关属性；作用：把源材质实例的 PreviewMesh 和 AssetUserData 暴露到详情面板；输出：无返回值。
 		void AddPreviewingProperties(IDetailLayoutBuilder& DetailLayout)
 		{
 			if (!MaterialEditorInstance->SourceInstance)
@@ -445,6 +462,7 @@ namespace
 			DefaultCategory.AddExternalObjectProperty(ExternalObjects, TEXT("AssetUserData"), EPropertyLocation::Advanced);
 		}
 
+		// 行为：批量设置组参数覆盖状态；作用：启用或禁用指定组内全部参数覆盖并刷新编辑器；输出：无返回值。
 		void SetGroupOverrideEnabled(int32 GroupIndex, bool bShouldEnable)
 		{
 			if (!MaterialEditorInstance.IsValid() || !MaterialEditorInstance->ParameterGroups.IsValidIndex(GroupIndex))
@@ -477,6 +495,7 @@ namespace
 			}
 		}
 
+		// 行为：复制参数值；作用：把指定参数组的覆盖状态和值序列化到剪贴板；输出：无返回值，剪贴板获得参数文本。
 		void OnCopyParameterValues(int32 ParameterGroupIndex)
 		{
 			if (!MaterialEditorInstance.IsValid() || !MaterialEditorInstance->ParameterGroups.IsValidIndex(ParameterGroupIndex))
@@ -526,6 +545,7 @@ namespace
 			}
 		}
 
+		// 行为：判断是否可复制参数值；作用：确认参数组有效且包含参数；输出：是否允许复制的布尔值。
 		bool CanCopyParameterValues(int32 ParameterGroupIndex) const
 		{
 			return MaterialEditorInstance.IsValid()
@@ -533,6 +553,7 @@ namespace
 				&& MaterialEditorInstance->ParameterGroups[ParameterGroupIndex].Parameters.Num() > 0;
 		}
 
+		// 行为：粘贴参数值；作用：从剪贴板解析覆盖状态和值并应用到指定参数组；输出：无返回值。
 		void OnPasteParameterValues(int32 ParameterGroupIndex)
 		{
 			if (!MaterialEditorInstance.IsValid() || !MaterialEditorInstance->ParameterGroups.IsValidIndex(ParameterGroupIndex))
@@ -595,6 +616,7 @@ namespace
 			}
 		}
 
+		// 行为：判断是否可粘贴参数值；作用：确认参数组可复制且剪贴板存在内容；输出：是否允许粘贴的布尔值。
 		bool CanPasteParameterValues(int32 ParameterGroupIndex) const
 		{
 			if (!CanCopyParameterValues(ParameterGroupIndex))
@@ -616,6 +638,7 @@ namespace
 	class FSGFToolsHierarchyDetailsExtension : public TSharedFromThis<FSGFToolsHierarchyDetailsExtension>
 	{
 	public:
+		// 行为：构造层级详情扩展对象；作用：绑定材质编辑器、材质实例和共享筛选状态；输出：无返回值，生成扩展对象。
 		FSGFToolsHierarchyDetailsExtension(TSharedRef<IMaterialEditor> InMaterialEditor, USGFToolsMaterialInstance* InMaterialInstance)
 			: MaterialEditor(InMaterialEditor)
 			, MaterialInstance(InMaterialInstance)
@@ -623,6 +646,7 @@ namespace
 		{
 		}
 
+		// 行为：绑定编辑器事件；作用：监听页签注册、注销和编辑器关闭事件；输出：无返回值。
 		void Bind()
 		{
 			if (TSharedPtr<IMaterialEditor> Editor = MaterialEditor.Pin())
@@ -633,16 +657,19 @@ namespace
 			}
 		}
 
+		// 行为：判断扩展是否属于指定编辑器；作用：避免对同一个材质编辑器重复创建扩展；输出：是否匹配的布尔值。
 		bool IsForEditor(const TSharedRef<IMaterialEditor>& InMaterialEditor) const
 		{
 			return MaterialEditor.Pin() == InMaterialEditor;
 		}
 
+		// 行为：判断扩展是否已关闭；作用：帮助全局列表清理失效扩展；输出：是否关闭的布尔值。
 		bool IsClosed() const
 		{
 			return bClosed || !MaterialEditor.IsValid();
 		}
 
+		// 行为：打开层级详情页签；作用：确保页签注册后在当前材质编辑器中唤起详情面板；输出：无返回值。
 		void OpenTab()
 		{
 			EnsureTabSpawnerRegistered();
@@ -656,6 +683,7 @@ namespace
 			}
 		}
 
+		// 行为：关闭扩展对象；作用：移除编辑器事件绑定并注销层级详情页签；输出：无返回值。
 		void Shutdown()
 		{
 			if (TSharedPtr<IMaterialEditor> Editor = MaterialEditor.Pin())
@@ -674,6 +702,7 @@ namespace
 		}
 
 	private:
+		// 行为：确保页签生成器已注册；作用：在打开页签前补注册层级详情页签；输出：无返回值。
 		void EnsureTabSpawnerRegistered()
 		{
 			if (bRegisteredTabSpawner)
@@ -690,6 +719,7 @@ namespace
 			}
 		}
 
+		// 行为：注册层级详情页签生成器；作用：向材质编辑器 TabManager 添加自定义详情页签；输出：无返回值。
 		void RegisterTabSpawner(const TSharedRef<FTabManager>& InTabManager)
 		{
 			if (!MaterialInstance.IsValid() || bRegisteredTabSpawner)
@@ -707,6 +737,7 @@ namespace
 			bRegisteredTabSpawner = true;
 		}
 
+		// 行为：注销层级详情页签生成器；作用：从材质编辑器 TabManager 移除自定义详情页签；输出：无返回值。
 		void UnregisterTabSpawner(const TSharedRef<FTabManager>& InTabManager)
 		{
 			InTabManager->UnregisterTabSpawner(SGFTools::MaterialInstanceHierarchyDetails::TabId);
@@ -714,11 +745,13 @@ namespace
 			RegisteredTabManager.Reset();
 		}
 
+		// 行为：处理编辑器关闭事件；作用：标记扩展已关闭以便后续清理；输出：无返回值。
 		void HandleEditorClosed()
 		{
 			bClosed = true;
 		}
 
+		// 行为：生成层级详情页签；作用：创建承载层级详情控件的 SDockTab；输出：页签 Widget 引用。
 		TSharedRef<SDockTab> SpawnHierarchyDetailsTab(const FSpawnTabArgs& Args)
 		{
 			return SNew(SDockTab)
@@ -732,6 +765,7 @@ namespace
 				];
 		}
 
+		// 行为：创建层级详情控件；作用：生成自定义 DetailsView 并绑定过滤、刷新和详情定制逻辑；输出：详情 Widget 引用。
 		TSharedRef<SWidget> CreateHierarchyDetailsWidget()
 		{
 			TSharedPtr<IMaterialEditor> Editor = MaterialEditor.Pin();
@@ -757,6 +791,7 @@ namespace
 			DetailsViewArgs.bShowCustomFilterOption = true;
 
 			TSharedRef<IDetailsView> DetailsView = PropertyEditorModule.CreateDetailView(DetailsViewArgs);
+			// 行为：校验详情属性节点；作用：允许自定义 DetailsView 接受当前属性树；输出：始终为 true 的布尔值。
 			DetailsView->SetCustomValidatePropertyNodesFunction(FOnValidateDetailsViewPropertyNodes::CreateLambda(
 				[](const FRootPropertyNodeList& PropertyNodeList)
 				{
@@ -765,6 +800,7 @@ namespace
 
 			DetailsView->RegisterInstancedCustomPropertyLayout(
 				UMaterialEditorInstanceConstant::StaticClass(),
+				// 行为：创建详情定制实例；作用：为材质编辑器实例生成层级详情自定义对象；输出：详情定制共享指针。
 				FOnGetDetailCustomizationInstance::CreateLambda([MaterialEditorInstance, State = State]()
 				{
 					return MakeShared<FSGFToolsHierarchyMaterialInstanceDetails>(MaterialEditorInstance, State.ToSharedRef());
@@ -772,6 +808,7 @@ namespace
 
 			TWeakPtr<IDetailsView> WeakDetailsView = DetailsView;
 			DetailsView->SetCustomFilterLabel(LOCTEXT("ShowOverriddenOnly", "Show Only Overridden Parameters"));
+			// 行为：切换仅显示覆盖参数过滤；作用：反转材质编辑器实例的覆盖过滤状态并刷新详情面板；输出：无返回值。
 			DetailsView->SetCustomFilterDelegate(FSimpleDelegate::CreateLambda([MaterialEditorInstance, WeakDetailsView]()
 			{
 				if (!MaterialEditorInstance)
@@ -802,14 +839,17 @@ namespace
 		bool bClosed = false;
 	};
 
+	// 行为：清理失效扩展；作用：从活动扩展列表移除已关闭或无效的扩展对象；输出：无返回值。
 	void PruneInactiveExtensions()
 	{
+		// 行为：判断扩展是否应移除；作用：供 RemoveAll 过滤无效或已关闭扩展；输出：是否移除的布尔值。
 		GActiveExtensions.RemoveAll([](const TSharedPtr<FSGFToolsHierarchyDetailsExtension>& Extension)
 		{
 			return !Extension.IsValid() || Extension->IsClosed();
 		});
 	}
 
+	// 行为：处理材质实例编辑器打开事件；作用：把等待队列中的 SGF 材质实例绑定到刚打开的材质编辑器；输出：无返回值。
 	void HandleMaterialInstanceEditorOpened(TWeakPtr<IMaterialEditor> WeakMaterialEditor)
 	{
 		if (GPendingMaterialInstances.IsEmpty())
@@ -831,6 +871,7 @@ namespace
 		GActiveExtensions.Add(Extension);
 	}
 
+	// 行为：确保材质编辑器事件已注册；作用：按需监听 MaterialEditor 模块的材质实例编辑器打开事件；输出：无返回值。
 	void EnsureMaterialEditorDelegateRegistered()
 	{
 		if (GMaterialInstanceEditorOpenedHandle.IsValid() || !FModuleManager::Get().IsModuleLoaded(TEXT("MaterialEditor")))
@@ -845,11 +886,13 @@ namespace
 
 namespace SGFTools::MaterialInstanceHierarchyDetails
 {
+	// 行为：启动层级详情扩展；作用：确保材质编辑器打开事件被监听；输出：无返回值。
 	void Startup()
 	{
 		EnsureMaterialEditorDelegateRegistered();
 	}
 
+	// 行为：关闭层级详情扩展；作用：移除事件监听、清空等待队列并关闭全部活动扩展；输出：无返回值。
 	void Shutdown()
 	{
 		if (GMaterialInstanceEditorOpenedHandle.IsValid() && FModuleManager::Get().IsModuleLoaded(TEXT("MaterialEditor")))
@@ -872,6 +915,7 @@ namespace SGFTools::MaterialInstanceHierarchyDetails
 		GActiveExtensions.Empty();
 	}
 
+	// 行为：排队等待材质实例编辑器；作用：记录要打开层级详情页签的 SGF 材质实例并确保事件已注册；输出：无返回值。
 	void QueueEditorForMaterialInstance(USGFToolsMaterialInstance* MaterialInstance)
 	{
 		if (MaterialInstance)
@@ -881,6 +925,7 @@ namespace SGFTools::MaterialInstanceHierarchyDetails
 		}
 	}
 
+	// 行为：打开指定材质编辑器的层级详情面板；作用：复用已有扩展或创建新扩展并唤起自定义页签；输出：无返回值。
 	void OpenForMaterialEditor(const TSharedRef<IMaterialEditor>& MaterialEditor)
 	{
 		PruneInactiveExtensions();
@@ -900,6 +945,7 @@ namespace SGFTools::MaterialInstanceHierarchyDetails
 		{
 			if (USGFToolsMaterialInstance* MaterialInstance = FindSGFToolsMaterialInstance(MaterialEditor))
 			{
+				// 行为：移除同实例等待项；作用：避免已打开的材质实例再次从等待队列创建扩展；输出：是否移除等待项的布尔值。
 				GPendingMaterialInstances.RemoveAll([MaterialInstance](const TWeakObjectPtr<USGFToolsMaterialInstance>& PendingMaterialInstance)
 				{
 					return !PendingMaterialInstance.IsValid() || PendingMaterialInstance.Get() == MaterialInstance;
