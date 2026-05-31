@@ -321,7 +321,7 @@ namespace
 					continue;
 				}
 
-				IDetailGroup& DetailGroup = GroupsCategory.AddGroup(ParameterGroup.GroupName, FText::FromName(ParameterGroup.GroupName), false, false);
+				IDetailGroup& DetailGroup = GroupsCategory.AddGroup(ParameterGroup.GroupName, FText::FromName(ParameterGroup.GroupName), false, true);
 				FUIAction CopyAction(
 					FExecuteAction::CreateSP(this, &FSGFToolsHierarchyMaterialInstanceDetails::OnCopyParameterValues, GroupIdx),
 					FCanExecuteAction::CreateSP(this, &FSGFToolsHierarchyMaterialInstanceDetails::CanCopyParameterValues, GroupIdx));
