@@ -1,0 +1,9 @@
+{
+	"BuildId": "47537391",
+	"Modules": 
+	{
+		"SGFTools": "UnrealEditor-SGFTools.dll",
+		"SGFToolsEditor": "UnrealEditor-SGFToolsEditor.dll",
+		"SGFToolsRuntime": "UnrealEditor-SGFToolsRuntime.dll"
+	}
+}

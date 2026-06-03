@@ -1,0 +1,12 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.SGFToolsRuntime.cpp.obj": [
+			"SGFToolsMaterialInstance.gen.cpp.obj",
+			"SGFToolsRuntime.init.gen.cpp.obj",
+			"PerModuleInline.gen.cpp.obj",
+			"SGFToolsMaterialInstance.cpp.obj",
+			"SGFToolsRuntime.cpp.obj"
+		]
+	}
+}

@@ -1,0 +1,22 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "h:\\unreal projects\\songgufutools\\plugins\\sgftools\\source\\sgftoolsruntime\\private\\sgftoolsruntime.cpp",
+        "ProvidedModule": "",
+        "PCH": "h:\\unreal projects\\songgufutools\\intermediate\\build\\win64\\x64\\songgufutoolseditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.valexpapi.cpp20.h.pch",
+        "Includes": [
+            "h:\\unreal projects\\songgufutools\\plugins\\sgftools\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\sgftoolsruntime\\definitions.sgftoolsruntime.h",
+            "h:\\unreal projects\\songgufutools\\plugins\\sgftools\\source\\sgftoolsruntime\\public\\sgftoolsruntime.h",
+            "g:\\unreal engine\\ue_5.7\\engine\\source\\runtime\\projects\\public\\interfaces\\ipluginmanager.h",
+            "g:\\unreal engine\\ue_5.7\\engine\\source\\runtime\\projects\\public\\plugindescriptor.h",
+            "g:\\unreal engine\\ue_5.7\\engine\\source\\runtime\\projects\\public\\custombuildsteps.h",
+            "g:\\unreal engine\\ue_5.7\\engine\\source\\runtime\\projects\\public\\localizationdescriptor.h",
+            "g:\\unreal engine\\ue_5.7\\engine\\source\\runtime\\projects\\public\\moduledescriptor.h",
+            "g:\\unreal engine\\ue_5.7\\engine\\source\\runtime\\projects\\public\\plugindisalloweddescriptor.h",
+            "g:\\unreal engine\\ue_5.7\\engine\\source\\runtime\\projects\\public\\pluginreferencedescriptor.h",
+            "g:\\unreal engine\\ue_5.7\\engine\\source\\runtime\\projects\\public\\versescope.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

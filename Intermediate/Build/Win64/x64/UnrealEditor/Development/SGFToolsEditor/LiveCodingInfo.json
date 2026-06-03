@@ -1,0 +1,15 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.SGFToolsEditor.cpp.obj": [
+			"SGFToolsEditor.init.gen.cpp.obj",
+			"SGFToolsMaterialInstanceFactory.gen.cpp.obj",
+			"PerModuleInline.gen.cpp.obj",
+			"SGFToolsMaterialInstanceAssetTypeActions.cpp.obj",
+			"SGFToolsMaterialInstanceConversion.cpp.obj",
+			"SGFToolsMaterialInstanceFactory.cpp.obj",
+			"SGFToolsMaterialInstanceHierarchyDetails.cpp.obj",
+			"SGFToolsEditor.cpp.obj"
+		]
+	}
+}

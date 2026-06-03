@@ -1,0 +1,19 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "h:\\unreal projects\\songgufutools\\plugins\\sgftools\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\sgftoolseditor\\module.sgftoolseditor.cpp",
+        "ProvidedModule": "",
+        "PCH": "h:\\unreal projects\\songgufutools\\intermediate\\build\\win64\\x64\\songgufutoolseditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.valexpapi.cpp20.h.pch",
+        "Includes": [
+            "h:\\unreal projects\\songgufutools\\plugins\\sgftools\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\sgftoolseditor\\definitions.sgftoolseditor.h",
+            "h:\\unreal projects\\songgufutools\\plugins\\sgftools\\intermediate\\build\\win64\\unrealeditor\\inc\\sgftoolseditor\\uht\\sgftoolseditor.init.gen.cpp",
+            "h:\\unreal projects\\songgufutools\\plugins\\sgftools\\intermediate\\build\\win64\\unrealeditor\\inc\\sgftoolseditor\\uht\\sgftoolsmaterialinstancefactory.gen.cpp",
+            "h:\\unreal projects\\songgufutools\\plugins\\sgftools\\source\\sgftoolseditor\\private\\material\\sgftoolsmaterialinstancefactory.h",
+            "h:\\unreal projects\\songgufutools\\plugins\\sgftools\\intermediate\\build\\win64\\unrealeditor\\inc\\sgftoolseditor\\uht\\sgftoolsmaterialinstancefactory.generated.h",
+            "h:\\unreal projects\\songgufutools\\plugins\\sgftools\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\sgftoolseditor\\permoduleinline.gen.cpp",
+            "g:\\unreal engine\\ue_5.7\\engine\\source\\runtime\\core\\public\\hal\\permoduleinline.inl"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

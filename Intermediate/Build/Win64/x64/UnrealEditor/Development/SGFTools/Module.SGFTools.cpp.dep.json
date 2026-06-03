@@ -1,0 +1,15 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "h:\\unreal projects\\songgufutools\\plugins\\sgftools\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\sgftools\\module.sgftools.cpp",
+        "ProvidedModule": "",
+        "PCH": "h:\\unreal projects\\songgufutools\\intermediate\\build\\win64\\x64\\songgufutoolseditor\\development\\unrealed\\sharedpch.unrealed.cpp20.h.pch",
+        "Includes": [
+            "h:\\unreal projects\\songgufutools\\plugins\\sgftools\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\sgftools\\definitions.sgftools.h",
+            "h:\\unreal projects\\songgufutools\\plugins\\sgftools\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\sgftools\\permoduleinline.gen.cpp",
+            "g:\\unreal engine\\ue_5.7\\engine\\source\\runtime\\core\\public\\hal\\permoduleinline.inl"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

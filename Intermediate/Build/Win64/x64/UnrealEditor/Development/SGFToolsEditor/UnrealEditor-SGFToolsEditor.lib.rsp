@@ -1,0 +1,17 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-SGFToolsEditor.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"H:/Unreal Projects/SongGuFuTools/Intermediate/Build/Win64/x64/SongGuFuToolsEditor/Development/UnrealEd/SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.h.obj"
+"H:/Unreal Projects/SongGuFuTools/Plugins/SGFTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/SGFToolsEditor/Module.SGFToolsEditor.cpp.obj"
+"H:/Unreal Projects/SongGuFuTools/Plugins/SGFTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/SGFToolsEditor/SGFToolsEditor.cpp.obj"
+"H:/Unreal Projects/SongGuFuTools/Plugins/SGFTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/SGFToolsEditor/SGFToolsMaterialInstanceAssetTypeActions.cpp.obj"
+"H:/Unreal Projects/SongGuFuTools/Plugins/SGFTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/SGFToolsEditor/SGFToolsMaterialInstanceConversion.cpp.obj"
+"H:/Unreal Projects/SongGuFuTools/Plugins/SGFTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/SGFToolsEditor/SGFToolsMaterialInstanceFactory.cpp.obj"
+"H:/Unreal Projects/SongGuFuTools/Plugins/SGFTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/SGFToolsEditor/SGFToolsMaterialInstanceHierarchyDetails.cpp.obj"
+"H:/Unreal Projects/SongGuFuTools/Plugins/SGFTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/SGFToolsEditor/Default.rc2.res"
+/OUT:"H:/Unreal Projects/SongGuFuTools/Plugins/SGFTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/SGFToolsEditor/UnrealEditor-SGFToolsEditor.lib"
