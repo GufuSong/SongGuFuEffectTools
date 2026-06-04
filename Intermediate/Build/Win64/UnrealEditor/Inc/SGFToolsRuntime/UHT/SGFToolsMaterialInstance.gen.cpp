@@ -110,15 +110,15 @@ USGFToolsMaterialInstance::~USGFToolsMaterialInstance() {}
 // ********** End Class USGFToolsMaterialInstance **************************************************
 
 // ********** Begin Registration *******************************************************************
-struct Z_CompiledInDeferFile_FID_SongGuFuTools_Plugins_SGFTools_Source_SGFToolsRuntime_Public_Material_SGFToolsMaterialInstance_h__Script_SGFToolsRuntime_Statics
+struct Z_CompiledInDeferFile_FID_SongGuFu_VFX_v2_Plugins_SGFTools_Source_SGFToolsRuntime_Public_Material_SGFToolsMaterialInstance_h__Script_SGFToolsRuntime_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
 		{ Z_Construct_UClass_USGFToolsMaterialInstance, USGFToolsMaterialInstance::StaticClass, TEXT("USGFToolsMaterialInstance"), &Z_Registration_Info_UClass_USGFToolsMaterialInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(USGFToolsMaterialInstance), 703492812U) },
 	};
-}; // Z_CompiledInDeferFile_FID_SongGuFuTools_Plugins_SGFTools_Source_SGFToolsRuntime_Public_Material_SGFToolsMaterialInstance_h__Script_SGFToolsRuntime_Statics 
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_SongGuFuTools_Plugins_SGFTools_Source_SGFToolsRuntime_Public_Material_SGFToolsMaterialInstance_h__Script_SGFToolsRuntime_1223297663{
+}; // Z_CompiledInDeferFile_FID_SongGuFu_VFX_v2_Plugins_SGFTools_Source_SGFToolsRuntime_Public_Material_SGFToolsMaterialInstance_h__Script_SGFToolsRuntime_Statics 
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_SongGuFu_VFX_v2_Plugins_SGFTools_Source_SGFToolsRuntime_Public_Material_SGFToolsMaterialInstance_h__Script_SGFToolsRuntime_1223297663{
 	TEXT("/Script/SGFToolsRuntime"),
-	Z_CompiledInDeferFile_FID_SongGuFuTools_Plugins_SGFTools_Source_SGFToolsRuntime_Public_Material_SGFToolsMaterialInstance_h__Script_SGFToolsRuntime_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_SongGuFuTools_Plugins_SGFTools_Source_SGFToolsRuntime_Public_Material_SGFToolsMaterialInstance_h__Script_SGFToolsRuntime_Statics::ClassInfo),
+	Z_CompiledInDeferFile_FID_SongGuFu_VFX_v2_Plugins_SGFTools_Source_SGFToolsRuntime_Public_Material_SGFToolsMaterialInstance_h__Script_SGFToolsRuntime_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_SongGuFu_VFX_v2_Plugins_SGFTools_Source_SGFToolsRuntime_Public_Material_SGFToolsMaterialInstance_h__Script_SGFToolsRuntime_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0,
 };

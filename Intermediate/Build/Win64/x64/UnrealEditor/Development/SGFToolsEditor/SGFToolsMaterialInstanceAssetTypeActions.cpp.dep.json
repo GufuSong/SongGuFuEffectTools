@@ -1,12 +1,12 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "h:\\unreal projects\\songgufutools\\plugins\\sgftools\\source\\sgftoolseditor\\private\\material\\sgftoolsmaterialinstanceassettypeactions.cpp",
+        "Source": "h:\\unreal projects\\songgufu_vfx_v2\\plugins\\sgftools\\source\\sgftoolseditor\\private\\material\\sgftoolsmaterialinstanceassettypeactions.cpp",
         "ProvidedModule": "",
-        "PCH": "h:\\unreal projects\\songgufutools\\intermediate\\build\\win64\\x64\\songgufutoolseditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.valexpapi.cpp20.h.pch",
+        "PCH": "h:\\unreal projects\\songgufu_vfx_v2\\intermediate\\build\\win64\\x64\\songgufu_vfx_v2editor\\development\\unrealed\\sharedpch.unrealed.project.valapi.valexpapi.cpp20.inclorderunreal5_4.h.pch",
         "Includes": [
-            "h:\\unreal projects\\songgufutools\\plugins\\sgftools\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\sgftoolseditor\\definitions.sgftoolseditor.h",
-            "h:\\unreal projects\\songgufutools\\plugins\\sgftools\\source\\sgftoolseditor\\private\\material\\sgftoolsmaterialinstanceassettypeactions.h",
+            "h:\\unreal projects\\songgufu_vfx_v2\\plugins\\sgftools\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\sgftoolseditor\\definitions.sgftoolseditor.h",
+            "h:\\unreal projects\\songgufu_vfx_v2\\plugins\\sgftools\\source\\sgftoolseditor\\private\\material\\sgftoolsmaterialinstanceassettypeactions.h",
             "g:\\unreal engine\\ue_5.7\\engine\\source\\developer\\assettools\\public\\assettypeactions_base.h",
             "g:\\unreal engine\\ue_5.7\\engine\\source\\developer\\assettools\\public\\iassettools.h",
             "g:\\unreal engine\\ue_5.7\\engine\\source\\developer\\assettools\\public\\assettypecategories.h",
@@ -23,11 +23,11 @@
             "g:\\unreal engine\\ue_5.7\\engine\\source\\editor\\unrealed\\public\\toolkits\\simpleasseteditor.h",
             "g:\\unreal engine\\ue_5.7\\engine\\source\\editor\\materialeditor\\public\\imaterialeditor.h",
             "g:\\unreal engine\\ue_5.7\\engine\\source\\editor\\unrealed\\public\\workfloworientedapp\\workflowcentricapplication.h",
-            "h:\\unreal projects\\songgufutools\\plugins\\sgftools\\source\\sgftoolsruntime\\public\\material\\sgftoolsmaterialinstance.h",
+            "h:\\unreal projects\\songgufu_vfx_v2\\plugins\\sgftools\\source\\sgftoolsruntime\\public\\material\\sgftoolsmaterialinstance.h",
             "g:\\unreal engine\\ue_5.7\\engine\\source\\runtime\\engine\\public\\materials\\materialinstanceconstant.h",
             "g:\\unreal engine\\ue_5.7\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\materialinstanceconstant.generated.h",
-            "h:\\unreal projects\\songgufutools\\plugins\\sgftools\\intermediate\\build\\win64\\unrealeditor\\inc\\sgftoolsruntime\\uht\\sgftoolsmaterialinstance.generated.h",
-            "h:\\unreal projects\\songgufutools\\plugins\\sgftools\\source\\sgftoolseditor\\private\\material\\sgftoolsmaterialinstancehierarchydetails.h",
+            "h:\\unreal projects\\songgufu_vfx_v2\\plugins\\sgftools\\intermediate\\build\\win64\\unrealeditor\\inc\\sgftoolsruntime\\uht\\sgftoolsmaterialinstance.generated.h",
+            "h:\\unreal projects\\songgufu_vfx_v2\\plugins\\sgftools\\source\\sgftoolseditor\\private\\material\\sgftoolsmaterialinstancehierarchydetails.h",
             "g:\\unreal engine\\ue_5.7\\engine\\source\\editor\\materialeditor\\public\\materialeditormodule.h"
         ],
         "ImportedModules": [],

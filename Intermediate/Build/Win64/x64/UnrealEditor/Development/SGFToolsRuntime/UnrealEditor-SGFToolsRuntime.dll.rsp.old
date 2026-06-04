@@ -36,11 +36,14 @@
 /FUNCTIONPADMIN:6
 /NOIMPLIB
 /NOEXP
+/NATVIS:"../Intermediate/Build/Win64/x64/UnrealEditor/Development/RenderCore/RenderCore.natvis"
 "H:/Unreal Projects/SongGuFuTools/Intermediate/Build/Win64/x64/SongGuFuToolsEditor/Development/UnrealEd/SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.h.obj"
 "H:/Unreal Projects/SongGuFuTools/Plugins/SGFTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/SGFToolsRuntime/Module.SGFToolsRuntime.cpp.obj"
 "H:/Unreal Projects/SongGuFuTools/Plugins/SGFTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/SGFToolsRuntime/SGFToolsRuntime.cpp.obj"
 "H:/Unreal Projects/SongGuFuTools/Plugins/SGFTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/SGFToolsRuntime/SGFToolsMaterialInstance.cpp.obj"
 "H:/Unreal Projects/SongGuFuTools/Plugins/SGFTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/SGFToolsRuntime/Default.rc2.res"
+"../Intermediate/Build/Win64/x64/UnrealEditor/Development/Projects/UnrealEditor-Projects.lib"
+"../Intermediate/Build/Win64/x64/UnrealEditor/Development/RenderCore/UnrealEditor-RenderCore.lib"
 "../Intermediate/Build/Win64/x64/UnrealEditor/Development/Core/UnrealEditor-Core.lib"
 "../Intermediate/Build/Win64/x64/UnrealEditor/Development/CoreUObject/UnrealEditor-CoreUObject.lib"
 "../Intermediate/Build/Win64/x64/UnrealEditor/Development/Engine/UnrealEditor-Engine.lib"

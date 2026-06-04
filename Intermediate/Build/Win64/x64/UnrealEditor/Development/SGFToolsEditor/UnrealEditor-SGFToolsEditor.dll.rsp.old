@@ -46,6 +46,7 @@
 "H:/Unreal Projects/SongGuFuTools/Plugins/SGFTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/SGFToolsEditor/Default.rc2.res"
 "../Intermediate/Build/Win64/x64/UnrealEditor/Development/CoreUObject/UnrealEditor-CoreUObject.lib"
 "../Intermediate/Build/Win64/x64/UnrealEditor/Development/Engine/UnrealEditor-Engine.lib"
+"../Intermediate/Build/Win64/x64/UnrealEditor/Development/ApplicationCore/UnrealEditor-ApplicationCore.lib"
 "../Intermediate/Build/Win64/x64/UnrealEditor/Development/Slate/UnrealEditor-Slate.lib"
 "../Intermediate/Build/Win64/x64/UnrealEditor/Development/SlateCore/UnrealEditor-SlateCore.lib"
 "../Intermediate/Build/Win64/x64/UnrealEditor/Development/UnrealEd/UnrealEditor-UnrealEd.lib"
@@ -82,6 +83,8 @@
 "synchronization.lib"
 "dwmapi.lib"
 "imm32.lib"
+"uiautomationcore.lib"
+"DXGI.lib"
 /OUT:"H:/Unreal Projects/SongGuFuTools/Plugins/SGFTools/Binaries/Win64/UnrealEditor-SGFToolsEditor.dll"
 /PDB:"H:/Unreal Projects/SongGuFuTools/Plugins/SGFTools/Binaries/Win64/UnrealEditor-SGFToolsEditor.pdb"
 /ignore:4078

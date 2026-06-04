@@ -12,5 +12,6 @@
 "H:/Unreal Projects/SongGuFuTools/Plugins/SGFTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/SGFToolsEditor/SGFToolsMaterialInstanceAssetTypeActions.cpp.obj"
 "H:/Unreal Projects/SongGuFuTools/Plugins/SGFTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/SGFToolsEditor/SGFToolsMaterialInstanceConversion.cpp.obj"
 "H:/Unreal Projects/SongGuFuTools/Plugins/SGFTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/SGFToolsEditor/SGFToolsMaterialInstanceFactory.cpp.obj"
+"H:/Unreal Projects/SongGuFuTools/Plugins/SGFTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/SGFToolsEditor/SGFToolsMaterialInstanceHierarchyDetails.cpp.obj"
 "H:/Unreal Projects/SongGuFuTools/Plugins/SGFTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/SGFToolsEditor/Default.rc2.res"
 /OUT:"H:/Unreal Projects/SongGuFuTools/Plugins/SGFTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/SGFToolsEditor/UnrealEditor-SGFToolsEditor.lib"

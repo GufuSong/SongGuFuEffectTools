@@ -1,18 +1,18 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "h:\\unreal projects\\songgufutools\\plugins\\sgftools\\source\\sgftoolseditor\\private\\material\\sgftoolsmaterialinstancefactory.cpp",
+        "Source": "h:\\unreal projects\\songgufu_vfx_v2\\plugins\\sgftools\\source\\sgftoolseditor\\private\\material\\sgftoolsmaterialinstancefactory.cpp",
         "ProvidedModule": "",
-        "PCH": "h:\\unreal projects\\songgufutools\\intermediate\\build\\win64\\x64\\songgufutoolseditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.valexpapi.cpp20.h.pch",
+        "PCH": "h:\\unreal projects\\songgufu_vfx_v2\\intermediate\\build\\win64\\x64\\songgufu_vfx_v2editor\\development\\unrealed\\sharedpch.unrealed.project.valapi.valexpapi.cpp20.inclorderunreal5_4.h.pch",
         "Includes": [
-            "h:\\unreal projects\\songgufutools\\plugins\\sgftools\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\sgftoolseditor\\definitions.sgftoolseditor.h",
-            "h:\\unreal projects\\songgufutools\\plugins\\sgftools\\source\\sgftoolseditor\\private\\material\\sgftoolsmaterialinstancefactory.h",
-            "h:\\unreal projects\\songgufutools\\plugins\\sgftools\\intermediate\\build\\win64\\unrealeditor\\inc\\sgftoolseditor\\uht\\sgftoolsmaterialinstancefactory.generated.h",
+            "h:\\unreal projects\\songgufu_vfx_v2\\plugins\\sgftools\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\sgftoolseditor\\definitions.sgftoolseditor.h",
+            "h:\\unreal projects\\songgufu_vfx_v2\\plugins\\sgftools\\source\\sgftoolseditor\\private\\material\\sgftoolsmaterialinstancefactory.h",
+            "h:\\unreal projects\\songgufu_vfx_v2\\plugins\\sgftools\\intermediate\\build\\win64\\unrealeditor\\inc\\sgftoolseditor\\uht\\sgftoolsmaterialinstancefactory.generated.h",
             "g:\\unreal engine\\ue_5.7\\engine\\source\\developer\\assettools\\public\\assettypecategories.h",
-            "h:\\unreal projects\\songgufutools\\plugins\\sgftools\\source\\sgftoolsruntime\\public\\material\\sgftoolsmaterialinstance.h",
+            "h:\\unreal projects\\songgufu_vfx_v2\\plugins\\sgftools\\source\\sgftoolsruntime\\public\\material\\sgftoolsmaterialinstance.h",
             "g:\\unreal engine\\ue_5.7\\engine\\source\\runtime\\engine\\public\\materials\\materialinstanceconstant.h",
             "g:\\unreal engine\\ue_5.7\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\materialinstanceconstant.generated.h",
-            "h:\\unreal projects\\songgufutools\\plugins\\sgftools\\intermediate\\build\\win64\\unrealeditor\\inc\\sgftoolsruntime\\uht\\sgftoolsmaterialinstance.generated.h"
+            "h:\\unreal projects\\songgufu_vfx_v2\\plugins\\sgftools\\intermediate\\build\\win64\\unrealeditor\\inc\\sgftoolsruntime\\uht\\sgftoolsmaterialinstance.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

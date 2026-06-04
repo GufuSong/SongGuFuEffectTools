@@ -20,7 +20,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 struct Z_Construct_UClass_USGFToolsMaterialInstanceFactory_Statics;
 SGFTOOLSEDITOR_API UClass* Z_Construct_UClass_USGFToolsMaterialInstanceFactory_NoRegister();
 
-#define FID_SongGuFuTools_Plugins_SGFTools_Source_SGFToolsEditor_Private_Material_SGFToolsMaterialInstanceFactory_h_19_INCLASS_NO_PURE_DECLS \
+#define FID_SongGuFu_VFX_v2_Plugins_SGFTools_Source_SGFToolsEditor_Private_Material_SGFToolsMaterialInstanceFactory_h_19_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUSGFToolsMaterialInstanceFactory(); \
 	friend struct ::Z_Construct_UClass_USGFToolsMaterialInstanceFactory_Statics; \
@@ -31,7 +31,7 @@ public: \
 	DECLARE_SERIALIZER(USGFToolsMaterialInstanceFactory)
 
 
-#define FID_SongGuFuTools_Plugins_SGFTools_Source_SGFToolsEditor_Private_Material_SGFToolsMaterialInstanceFactory_h_19_ENHANCED_CONSTRUCTORS \
+#define FID_SongGuFu_VFX_v2_Plugins_SGFTools_Source_SGFToolsEditor_Private_Material_SGFToolsMaterialInstanceFactory_h_19_ENHANCED_CONSTRUCTORS \
 	/** Deleted move- and copy-constructors, should never be used */ \
 	USGFToolsMaterialInstanceFactory(USGFToolsMaterialInstanceFactory&&) = delete; \
 	USGFToolsMaterialInstanceFactory(const USGFToolsMaterialInstanceFactory&) = delete; \
@@ -41,12 +41,12 @@ public: \
 	NO_API virtual ~USGFToolsMaterialInstanceFactory();
 
 
-#define FID_SongGuFuTools_Plugins_SGFTools_Source_SGFToolsEditor_Private_Material_SGFToolsMaterialInstanceFactory_h_16_PROLOG
-#define FID_SongGuFuTools_Plugins_SGFTools_Source_SGFToolsEditor_Private_Material_SGFToolsMaterialInstanceFactory_h_19_GENERATED_BODY \
+#define FID_SongGuFu_VFX_v2_Plugins_SGFTools_Source_SGFToolsEditor_Private_Material_SGFToolsMaterialInstanceFactory_h_16_PROLOG
+#define FID_SongGuFu_VFX_v2_Plugins_SGFTools_Source_SGFToolsEditor_Private_Material_SGFToolsMaterialInstanceFactory_h_19_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_SongGuFuTools_Plugins_SGFTools_Source_SGFToolsEditor_Private_Material_SGFToolsMaterialInstanceFactory_h_19_INCLASS_NO_PURE_DECLS \
-	FID_SongGuFuTools_Plugins_SGFTools_Source_SGFToolsEditor_Private_Material_SGFToolsMaterialInstanceFactory_h_19_ENHANCED_CONSTRUCTORS \
+	FID_SongGuFu_VFX_v2_Plugins_SGFTools_Source_SGFToolsEditor_Private_Material_SGFToolsMaterialInstanceFactory_h_19_INCLASS_NO_PURE_DECLS \
+	FID_SongGuFu_VFX_v2_Plugins_SGFTools_Source_SGFToolsEditor_Private_Material_SGFToolsMaterialInstanceFactory_h_19_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -56,6 +56,6 @@ class USGFToolsMaterialInstanceFactory;
 // ********** End Class USGFToolsMaterialInstanceFactory *******************************************
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_SongGuFuTools_Plugins_SGFTools_Source_SGFToolsEditor_Private_Material_SGFToolsMaterialInstanceFactory_h
+#define CURRENT_FILE_ID FID_SongGuFu_VFX_v2_Plugins_SGFTools_Source_SGFToolsEditor_Private_Material_SGFToolsMaterialInstanceFactory_h
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

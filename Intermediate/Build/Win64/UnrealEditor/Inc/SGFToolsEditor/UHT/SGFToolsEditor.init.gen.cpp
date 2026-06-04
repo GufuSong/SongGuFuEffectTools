@@ -17,7 +17,7 @@ static_assert(!UE_WITH_CONSTINIT_UOBJECT, "This generated code can only be compi
 			nullptr,
 			0,
 			PKG_CompiledIn | 0x00000040,
-			0x0577E5DF,
+			0xED05B963,
 			0xF58E16CE,
 			METADATA_PARAMS(0, nullptr)
 		};
@@ -25,5 +25,5 @@ static_assert(!UE_WITH_CONSTINIT_UOBJECT, "This generated code can only be compi
 	}
 	return Z_Registration_Info_UPackage__Script_SGFToolsEditor.OuterSingleton;
 }
-static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_SGFToolsEditor(Z_Construct_UPackage__Script_SGFToolsEditor, TEXT("/Script/SGFToolsEditor"), Z_Registration_Info_UPackage__Script_SGFToolsEditor, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x0577E5DF, 0xF58E16CE));
+static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_SGFToolsEditor(Z_Construct_UPackage__Script_SGFToolsEditor, TEXT("/Script/SGFToolsEditor"), Z_Registration_Info_UPackage__Script_SGFToolsEditor, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xED05B963, 0xF58E16CE));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
