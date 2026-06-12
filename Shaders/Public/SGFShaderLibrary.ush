@@ -1,6 +1,7 @@
-// 松谷福通用材质函数库
+// Shared SGF material helpers.
 
 #pragma once
+#include "/Plugin/SGFTools/Private/GeneralVFX/SequenceFrame.ush"
 
 struct Str_SongGuFuFunLibrary_BasicGeneral
 {
@@ -8,35 +9,72 @@ struct Str_SongGuFuFunLibrary_BasicGeneral
     {
         return 0.2;
     }
-    
+
+    // 基础SampleSequenceUV
     float2 SampleSequenceUV(float InColumns, float InRows, float2 InUV, float Frame)
     {
-        /* 1. 添加Frame 超出限制至循环播放功能
-           2. 添加 通过时间驱动序列帧 功能
-           3. 添加反转 序列帧读取顺序功能 
-           4. 添加 Motion Vector 支持
+        /*
+           1. Wrap frame indices for loop playback.
+           2. Keep the default path free of reverse-control logic.
         */
-        
-        
+
         float Columns = max(InColumns, 1.0);
         float Rows = max(InRows, 1.0);
-        
-        float TotalTrames = Columns * Rows;
-        
-        //限制帧范围
-        float FrameIndex = clamp(floor(Frame), 0.0, TotalTrames - 1.0);
-        
+
+        float TotalFrames = Columns * Rows;
+
+        // Wrap the frame index into the valid range for loop playback.
+        float FrameIndex = fmod(fmod(floor(Frame), TotalFrames) + TotalFrames, TotalFrames);
+
         float FrameX = fmod(FrameIndex, Columns);
         float FrameY = floor(FrameIndex / Columns);
-        
+
         float2 CellSize = float2(1.0 / Columns, 1.0 / Rows);
-        
-        //当前帧内部UV
+
+        // UV inside the current cell.
         float2 LocalUV = frac(InUV);
-        
-        //真实UV
+
+        // Final atlas UV.
         return LocalUV * CellSize + float2(FrameX, FrameY) * CellSize;
-       
     }
+
+    
+    // 基础SampleSequenceUV  附带倒置UV功能
+    float2 SampleSequenceUV(float InColumns, float InRows, float2 InUV, float Frame, float4 ReverseControl)
+    {
+        /*
+           1. Wrap frame indices for loop playback.
+           2. Reverse atlas frame order by columns and rows.
+           3. Flip local UV inside a single frame cell.
+         */
+
+        float Columns = max(InColumns, 1.0);
+        float Rows = max(InRows, 1.0);
+
+        float TotalFrames = Columns * Rows;
+
+        // Wrap the frame index into the valid range for loop playback.
+        float FrameIndex = fmod(fmod(floor(Frame), TotalFrames) + TotalFrames, TotalFrames);
+
+        float FrameX = fmod(FrameIndex, Columns);
+        float FrameY = floor(FrameIndex / Columns);
+
+        float2 CellSize = float2(1.0 / Columns, 1.0 / Rows);
+
+        // UV inside the current cell.
+        float2 LocalUV = frac(InUV);
+
+        // Reverse atlas frame lookup across columns and rows.
+        FrameX = lerp(FrameX, Columns - 1.0 - FrameX, step(0.5, ReverseControl.x));
+        FrameY = lerp(FrameY, Rows - 1.0 - FrameY, step(0.5, ReverseControl.y));
+
+        // Flip local UV inside the selected frame cell.
+        LocalUV.x = lerp(LocalUV.x, 1.0 - LocalUV.x, step(0.5, ReverseControl.z));
+        LocalUV.y = lerp(LocalUV.y, 1.0 - LocalUV.y, step(0.5, ReverseControl.w));
+
+        // Final atlas UV.
+        return LocalUV * CellSize + float2(FrameX, FrameY) * CellSize;
+    }
+    
     
 } SongGuFuFunLibrary_BasicGeneral;

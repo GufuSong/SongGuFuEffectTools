@@ -1,0 +1,50 @@
+// Shared sequence frame helpers.
+
+#ifndef SGF_SEQUENCE_FRAME_USH
+#define SGF_SEQUENCE_FRAME_USH
+
+#pragma once
+
+struct Str_SGFSequenceFrame
+{
+    float TimeFrame(float Time,
+    float FrameRate,
+    float MaxFrameCount,
+    float Loop,
+    out float FrameBlendAlpha)
+    {
+        Time = max(Time, 0.0);
+        FrameRate = max(FrameRate, 0.0);
+        MaxFrameCount = max(MaxFrameCount, 1.0);
+
+        float RawFrameFloat = Time * FrameRate;
+        float RawFrame = floor(RawFrameFloat);
+        float LastFrame = MaxFrameCount - 1.0;
+
+        // Loop playback.
+        float LoopFrame = fmod(RawFrame, MaxFrameCount);
+
+        // Play once and stop on the last frame.
+        float ClampFrame = min(RawFrame, LastFrame);
+
+        FrameBlendAlpha = frac(RawFrameFloat);
+        
+        //
+        float FreezeBlendAlpha = (1.0 - step(0.5, Loop)) * step(LastFrame, RawFrame);
+        FrameBlendAlpha = lerp(FrameBlendAlpha, 0.0, FreezeBlendAlpha);
+
+        return lerp(ClampFrame, LoopFrame, step(0.5, Loop));
+    }
+
+    
+    float TimeFrame(float Time,
+    float FrameRate,
+    float MaxFrameCount,
+    float Loop)
+    {
+        float FrameBlendAlpha;
+        return TimeFrame(Time, FrameRate, MaxFrameCount, Loop, FrameBlendAlpha);
+    }
+} SGFSequenceFrame;
+
+#endif
