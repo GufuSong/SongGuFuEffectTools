@@ -1,6 +1,5 @@
 // Shared SGF material helpers.
 
-#pragma once
 #include "/Plugin/SGFTools/Private/GeneralVFX/SequenceFrame.ush"
 
 struct Str_SongGuFuFunLibrary_BasicGeneral

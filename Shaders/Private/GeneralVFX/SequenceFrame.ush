@@ -1,9 +1,5 @@
 // Shared sequence frame helpers.
 
-#ifndef SGF_SEQUENCE_FRAME_USH
-#define SGF_SEQUENCE_FRAME_USH
-
-#pragma once
 
 struct Str_SGFSequenceFrame
 {
@@ -47,4 +43,3 @@ struct Str_SGFSequenceFrame
     }
 } SGFSequenceFrame;
 
-#endif

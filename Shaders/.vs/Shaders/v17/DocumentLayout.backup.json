@@ -52,7 +52,7 @@
               "RelativeDocumentMoniker": "Public\\SGFShaderLibrary.ush",
               "ToolTip": "H:\\Unreal Projects\\SongGuFu_VFX_v2\\Plugins\\SGFTools\\Shaders\\Public\\SGFShaderLibrary.ush",
               "RelativeToolTip": "Public\\SGFShaderLibrary.ush",
-              "ViewState": "AgIAACIAAAAAAAAAAAAAAEsAAABGAAAAAAAAAA==",
+              "ViewState": "AgIAACIAAAAAAAAAAAAAAD8AAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2026-06-12T14:43:40.5Z",
               "EditorCaption": ""
@@ -67,8 +67,7 @@
               "RelativeToolTip": "Private\\GeneralVFX\\SequenceFrame.ush",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-06-12T14:43:35.433Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-12T14:43:35.433Z"
             }
           ]
         }

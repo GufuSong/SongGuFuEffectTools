@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "H:\\Unreal Projects\\SongGuFu_VFX_v2\\Plugins\\SGFTools\\Shaders\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|H:\\Unreal Projects\\SongGuFu_VFX_v2\\Plugins\\SGFTools\\Shaders\\Public\\SGFShaderLibrary.ush||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Public\\SGFShaderLibrary.ush||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|H:\\Unreal Projects\\SongGuFu_VFX_v2\\Plugins\\SGFTools\\Shaders\\Private\\GeneralVFX\\SequenceFrame.ush||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Private\\GeneralVFX\\SequenceFrame.ush||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|H:\\Unreal Projects\\SongGuFu_VFX_v2\\Plugins\\SGFTools\\Shaders\\Public\\SGFShaderLibrary.ush||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Public\\SGFShaderLibrary.ush||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|H:\\Unreal Projects\\SongGuFu_VFX_v2\\Plugins\\SGFTools\\Shaders\\Public\\SGFMaterialCommon.ush||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,28 +46,29 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "SGFShaderLibrary.ush",
               "DocumentMoniker": "H:\\Unreal Projects\\SongGuFu_VFX_v2\\Plugins\\SGFTools\\Shaders\\Public\\SGFShaderLibrary.ush",
               "RelativeDocumentMoniker": "Public\\SGFShaderLibrary.ush",
               "ToolTip": "H:\\Unreal Projects\\SongGuFu_VFX_v2\\Plugins\\SGFTools\\Shaders\\Public\\SGFShaderLibrary.ush",
               "RelativeToolTip": "Public\\SGFShaderLibrary.ush",
-              "ViewState": "AgIAACIAAAAAAAAAAAAAAD8AAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2026-06-12T14:43:40.5Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "SequenceFrame.ush",
               "DocumentMoniker": "H:\\Unreal Projects\\SongGuFu_VFX_v2\\Plugins\\SGFTools\\Shaders\\Private\\GeneralVFX\\SequenceFrame.ush",
               "RelativeDocumentMoniker": "Private\\GeneralVFX\\SequenceFrame.ush",
               "ToolTip": "H:\\Unreal Projects\\SongGuFu_VFX_v2\\Plugins\\SGFTools\\Shaders\\Private\\GeneralVFX\\SequenceFrame.ush",
               "RelativeToolTip": "Private\\GeneralVFX\\SequenceFrame.ush",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAAC0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-06-12T14:43:35.433Z"
+              "WhenOpened": "2026-06-12T14:43:35.433Z",
+              "EditorCaption": ""
             }
           ]
         }
